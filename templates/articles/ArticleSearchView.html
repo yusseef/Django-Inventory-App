@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+{% for query in Query  %}
+<h1>{{query.title}}</h1>
+<h2>{{query.content}}</h2>
+{% endfor %}
+    
+
+
+    
+
+{% endblock content %}
+    

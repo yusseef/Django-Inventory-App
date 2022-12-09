@@ -1,0 +1,19 @@
+<html>
+    <body>
+        
+        {% include 'header.html' %}
+        <form action = "{% url 'ArticleSearchView' %}" method="GET">
+        <input type='text' name='q'/>
+        <input type='submit'/>
+        </form>
+        
+        {% block content %} {% endblock content %}
+        
+        {% include 'footer.html' %}
+        
+
+    </body>
+</html>
+
+
+    
