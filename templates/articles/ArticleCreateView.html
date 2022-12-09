@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+{% if not created %}
+<div style = 'margin-top: 30px'>
+
+    <form method="POST" action=".">
+        {% csrf_token %}
+        <div style = 'margin-top: 10px'>
+            <input type='text' name="title" placeholder="Title">
+
+        </div>
+       <div style = 'margin-top: 10px'>
+        <textarea name="content" placeholder="Content"></textarea>
+
+       </div>
+       <div style = 'margin-top: 10px'>
+        <button type="submit">Creat article</button>
+
+       </div>
+    </form> 
+
+</div>
+
+{% else %}
+<p>Your article</p>
+<a href = "{% url 'ArticleView' Query.id %}"> {{Query.title}}</a>
+{% endif %}
+    
+
+  
+{% endblock content %}
+    

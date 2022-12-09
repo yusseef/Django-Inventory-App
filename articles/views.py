@@ -1,10 +1,23 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import *
 # Create your views here.
-def HomeView(request):
+def ArticListView(request):
     Query = Articles.objects.all()
     context = {'Query': Query}
-    return render(request, 'articles/HomeView.html', context)
+    return render(request, 'articles/ArticleList.html', context)
+
+def ArticleCreateView(request):
+    #Basic html create view
+    context = {}
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        content = request.POST.get('content')
+        Query = Articles.objects.create(title=title, content=content)
+        context['Query'] = Query
+        context['created'] = True      
+    
+    return render(request,'articles/ArticleCreateView.html', context)
+
 
 def ArticleView(request, id):
     Query = Articles.objects.get(id=id)
@@ -24,3 +37,4 @@ def ArticleSearchView(request):
 
     context = {"Query" : Query}
     return render(request, 'articles/ArticleSearchView.html', context)
+
