@@ -1,4 +1,4 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
 
 # Create your views here.
@@ -18,6 +18,9 @@ def AccountLoginView(request):
 
 def AccountLogoutView(request):
     context = {}
+    if request.method == 'POST':
+        logout(request)
+        return redirect('AccountLogin')
     return render(request, 'accounts/AccountLogout.html', context)
 
 def AccountRegisterView(request):
