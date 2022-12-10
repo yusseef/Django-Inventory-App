@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
 from .models import *
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 def ArticListView(request):
     Query = Articles.objects.all()
     context = {'Query': Query}
     return render(request, 'articles/ArticleList.html', context)
 
+@login_required
 def ArticleCreateView(request):
     #Basic html create view
     context = {}
