@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect
-
+from django.contrib.auth.forms import UserCreationForm
 # Create your views here.
 def AccountLoginView(request):
     context = {}
@@ -24,5 +24,10 @@ def AccountLogoutView(request):
     return render(request, 'accounts/AccountLogout.html', context)
 
 def AccountRegisterView(request):
-    context = {}
-    return render(request, 'accounts/Accountregister.html', context)
+    form = UserCreationForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect('AccountLogin')
+    
+    context = {'form': form}
+    return render(request, 'accounts/AccountRegister.html', context)
