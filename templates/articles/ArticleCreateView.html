@@ -8,16 +8,9 @@
 
     <form method="POST" action=".">
         {% csrf_token %}
-        <div style = 'margin-top: 10px'>
-            <input type='text' name="title" placeholder="Title">
-
-        </div>
+        {{form.as_p}}
        <div style = 'margin-top: 10px'>
-        <textarea name="content" placeholder="Content"></textarea>
-
-       </div>
-       <div style = 'margin-top: 10px'>
-        <button type="submit">Creat article</button>
+        <button type="submit">Create article</button>
 
        </div>
     </form> 
