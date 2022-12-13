@@ -3,8 +3,12 @@ from django.utils import timezone
 from django.db.models.signals import pre_save, post_save
 from django.utils.text import slugify
 from django.urls import reverse
+from django.conf import settings
 # Create your models here.
+
+User = settings.AUTH_USER_MODEL
 class Articles(models.Model):
+    user = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL)
     title = models.CharField(max_length=200)
     slug = models.SlugField(blank = True, null = True)
     content = models.TextField(max_length=500)
