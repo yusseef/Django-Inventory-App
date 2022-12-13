@@ -5,7 +5,7 @@
 <h1>Hello im from html</h1>
 <a href = "{% url 'ArticleCreateView'%}">Creat an article</a>
 {% for elem in Query %}
-<p><a href = "{% url 'ArticleView' elem.id %}"> {{elem.title}}</a>    </p>
+<p><a href = "{{elem.get_absolute_url}}"> {{elem.title}}</a>    </p>
 
 {% endfor %}
     

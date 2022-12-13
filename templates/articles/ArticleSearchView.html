@@ -4,7 +4,7 @@
 {% block content %}
 
 {% for query in Query  %}
-<h1>{{query.title}}</h1>
+<a href = "{{query.get_absolute_url}}">{{query.title}}</a>
 <h2>{{query.content}}</h2>
 {% endfor %}
     
