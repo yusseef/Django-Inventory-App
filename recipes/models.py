@@ -2,6 +2,8 @@ from django.db import models
 from django.conf import settings
 from .validators import validate_unit
 from .utils import number_str_to_float
+from django.urls import reverse
+
 User = settings.AUTH_USER_MODEL
 # Create your models here.
 
@@ -16,6 +18,11 @@ class Recipes(models.Model):
     updated = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)
 
+    def get_absolute_url(self):
+        return reverse("recipes:recipedetail", kwargs= {"id":self.id})
+       
+        
+
     def __str__(self):
         return self.name
 
@@ -29,6 +36,8 @@ class RecipeIngredient(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)
+    def get_absolute_url(self):
+        return recipe.get_absolute_url()
 
     def save(self, *args, **kwargs):
         qty = self.quantity
