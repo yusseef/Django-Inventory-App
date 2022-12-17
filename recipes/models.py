@@ -1,15 +1,9 @@
 from django.db import models
 from django.conf import settings
-
+from .validators import validate_unit
 User = settings.AUTH_USER_MODEL
 # Create your models here.
 
-UnitChoices = [
-    ('Pounds', 'Pounds'),
-    ('Gram', 'Gram'),
-    ('lbs', 'lbs'),
-    ('Oz', 'Oz'),
-]
 
 
 class Recipes(models.Model):
@@ -29,7 +23,7 @@ class RecipeIngredient(models.Model):
     name = models.CharField(max_length=200)
     description = models.TextField(blank=True, null=True)
     quantity = models.CharField(max_length=50)
-    unit = models.CharField(max_length=500, choices = UnitChoices)
+    unit = models.CharField(max_length=500, validators=[validate_unit] )
     timestamp = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)
