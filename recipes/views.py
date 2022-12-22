@@ -17,6 +17,7 @@ def recipe_list(request):
 @login_required
 def recipe_detail(request, id = None):
     query = get_object_or_404(Recipes, id = id, user = request.user)
+    print(query)
     context = {'query': query}
     return render(request, 'recipes/RecipeDetail.html', context)
 

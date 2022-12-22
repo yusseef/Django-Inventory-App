@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+        
+<h1>Hello im from html</h1>
+<a href = "{% url 'recipes:CreateRecipeView'%}">Create a recipe</a>
+{% for elem in query %}
+<p><a href = "{{elem.get_absolute_url}}"> {{elem.name}}</a></p>
+
+{% endfor %}
+    
+
+{% endblock content %}

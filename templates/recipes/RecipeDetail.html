@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<h1>Recipe {{query.name}}</h1>
+<h1>Author {{query.user}}</h1>
+
+{% for ingredient in query.recipeingredient_set.all  %}
+    <h1>{{ingredient.name}}</h1>
+    <h1>{{ingredient.quantity}}</h1>
+
+{% endfor %}
+    
+
+{% endblock content %}
+    
