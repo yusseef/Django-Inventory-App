@@ -1,7 +1,7 @@
-"""core URL Configuration
+"""trydjango URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/4.1/topics/http/urls/
+    https://docs.djangoproject.com/en/3.2/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -14,13 +14,27 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path, include
-from .views import *
+from django.urls import include, path, re_path
+
+from accounts.views import (
+    login_view,
+    logout_view,
+    register_view
+)
+
+from meals.views import meal_queue_toggle_view
+
+from search.views import search_view
+from .views import home_view
 
 urlpatterns = [
+    path('', home_view), # index / home / root 
+    path('pantry/recipes/', include('recipes.urls')),
+    path('articles/', include('articles.urls')),
+    path('meal-toggle/<int:recipe_id>/', meal_queue_toggle_view, name='meal-toggle'),
+    path('search/', search_view, name='search'),
     path('admin/', admin.site.urls),
-    path('', include('articles.urls')),
-    path('accounts/', include('accounts.urls')),
-    path('recipes/', include('recipes.urls')),
-
+    path('login/', login_view),
+    path('logout/', logout_view),
+    path('register/', register_view),
 ]
